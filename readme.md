@@ -16,7 +16,7 @@ This web component uses the Polymer library.
     <pic-src src="imgs/small.jpg"  media="(min-width: 200px)"></pic-src>
     <pic-src src="imgs/medium.jpg" media="(min-width: 400px)"></pic-src>
     <pic-src src="imgs/large.jpg"  media="(min-width: 800px)"></pic-src>
-  </x-picture>
+</x-picture>
 ```
 
 ## Experiment only
