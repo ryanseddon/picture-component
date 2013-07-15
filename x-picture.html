@@ -1,0 +1,47 @@
+<element name="x-picture">
+  <template>
+    <img />
+  </template>
+  <script>
+    if(this !== window) {
+      var template = this.querySelector("template");
+
+      this.register({
+        prototype: {
+          readyCallback: function() {
+            var imgSrc = this.matches.pop(),
+                tplContent = template.content,
+                img = tplContent.querySelector("img");
+
+            img.src = imgSrc;
+            img.alt = this.getAttribute("alt");
+
+            this.createShadowRoot().appendChild(tplContent.cloneNode(true));
+          },
+          matches: [],
+          queryImageMQ: function(mq, src) {
+            if(window.matchMedia( mq ).matches ) {
+              this.matches.push(src);
+            }
+          }
+        }
+      });
+    }
+  </script>
+</element>
+
+<element name="pic-src">
+  <script>
+    this.register({
+      prototype: {
+        readyCallback: function() {
+          var parent = this.parentNode,
+              media = this.getAttribute("media"),
+              src = this.getAttribute("src");
+
+          parent.queryImageMQ(media, src);
+        }
+      }
+    });
+  </script>
+</element>
